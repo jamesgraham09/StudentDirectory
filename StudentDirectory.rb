@@ -21,24 +21,25 @@ students = [
 "Kumi",
 "Bruce"
 ]
+default_cohort = "November"
 
+	def print_header
+		puts "The students of my cohort at Makers"
+		puts ">>>>> ++++ <<<<<"
+	end
 
-def print_header
-	puts "The students of my cohort at Makers"
-	puts ">>>>> ++++ <<<<<"
-end
+	def print(names)
+		names.each do |silly|
+			puts silly
+		end
+	end
 
-def print(names)
-	names.each do |name|
-	puts "#{name}, November"
-end
-end
-
-def print_footer(names)
-	puts ">>>>> ++++ <<<<<"
-	puts "Overall, we have #{names.length} great students"
-end
+	def print_footer(names)
+		puts ">>>>> ++++ <<<<<"
+		puts "Overall, we have #{names.length} great students"
+	end
 
 print_header
 print(students)
+puts default_cohort
 print_footer(students)
