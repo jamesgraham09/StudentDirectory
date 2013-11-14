@@ -31,7 +31,9 @@ default_cohort = "November"
 
 	def print(names, cohort)
 		names.each_with_index do |name, index|
-			puts "#{index+1}: #{name}, #{cohort}"
+			if name.length < 5		
+				puts "#{index+1}: #{name}, #{cohort}"
+			end
 		end
 	end
 
