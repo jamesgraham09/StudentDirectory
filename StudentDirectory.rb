@@ -21,6 +21,7 @@ students = [
 "Kumi",
 "Bruce"
 ]
+
 default_cohort = "November"
 
 	def print_header
@@ -28,9 +29,9 @@ default_cohort = "November"
 		puts ">>>>> ++++ <<<<<"
 	end
 
-	def print(names)
-		names.each do |silly|
-			puts silly
+	def print(names, cohort)
+		names.each_with_index do |name, index|
+			puts "#{index+1}: #{name}, #{cohort}"
 		end
 	end
 
@@ -40,6 +41,5 @@ default_cohort = "November"
 	end
 
 print_header
-print(students)
-puts default_cohort
+print(students, default_cohort)
 print_footer(students)
