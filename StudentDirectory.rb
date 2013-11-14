@@ -21,6 +21,8 @@ students = [
 "Kumi",
 "Bruce"
 ]
+
+
 def print_header
 	puts "The students of my cohort at Makers"
 	puts ">>>>> ++++ <<<<<"
@@ -28,7 +30,7 @@ end
 
 def print(names)
 	names.each do |name|
-	puts name
+	puts "#{name}, November"
 end
 end
 
