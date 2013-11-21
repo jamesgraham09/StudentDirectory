@@ -6,12 +6,9 @@
 # METHOD TO work out what user wants to do
 def interactive_menu
 # print introductory question
-	students =[]
+	students = load_students()
 	loop do
-		puts "What would you like to do now?"
-		puts "1. input names"
-		puts "2. review student list"
-		puts "9. exit the program"	
+		print_selector
 # get selection
 		selection = gets.chomp		
 # establish consequences of selection	
@@ -21,6 +18,7 @@ def interactive_menu
 			when "2"
 				print_students(students)
 			when "9"
+				save_students(students)
 				exit
 			else
 				puts "Not understood. Re-input selection"
@@ -29,6 +27,13 @@ def interactive_menu
 end
 
 # METHODS FOR HEADER AND FOOTER TEXT
+def print_selector
+		puts "What would you like to do now?"
+		puts "1. input names"
+		puts "2. review student list"
+		puts "9. exit the program"	
+end
+
 def print_header
 	puts "-----------------------------------------------"
 	puts "Student Directory Project, James Graham, Nov 13"
@@ -40,7 +45,7 @@ def print_footer
 	puts "-----------------------------------------------"
 end
 
-# METHOD TO enter users into the system
+# METHOD to enter users into the system
 def input_students(students)
 	puts "Please enter student names"
 	puts "Hit return twice to exit"
@@ -53,12 +58,38 @@ def input_students(students)
 	return students
 end
 
-def  print_students(y)
+# METHOD to save students to a csv file before executing
+def save_students(students)
+	file = File.open("students.csv", 'w')
+	students.each do |student|
+		student_data = [student[:name], student[:cohort]]
+		csv_line = student_data.join(",")
+		file.puts csv_line
+	end
+	file.close
+end
+
+# METHOD for loading existing students.csv
+def load_students()
+	file = File.open("students.csv", 'r')
+	students = []
+		file.readlines.each do |line|
+		name, cohort = line.chomp.split(',')
+		students << {name: name, cohort: cohort}
+	end
+	file.close
+	return students
+end
+
+
+
+# METHOD for printing students with lattest array as a variable)
+def  print_students(students)
 	print_header
-	y.each do |z|
-		print z[:name]
+	students.each do |student|
+		print student[:name]
 		print ", "
-		puts z[:cohort]
+		puts student[:cohort]
 	end
 	print_footer
 end
